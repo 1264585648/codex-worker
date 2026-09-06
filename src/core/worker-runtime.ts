@@ -1,4 +1,4 @@
-import { Task } from './types';
+import type { Task } from '../types.js';
 
 export interface TaskProvider {
   next(): Promise<Task | undefined>;
