@@ -1,7 +1,9 @@
 export type TaskStatus =
-  | 'WAITING'
+  | 'CREATED'
+  | 'QUEUED'
   | 'RUNNING'
-  | 'DONE'
+  | 'WAITING_QUOTA'
+  | 'COMPLETED'
   | 'FAILED';
 
 export interface Task {
@@ -10,6 +12,9 @@ export interface Task {
   workspace: string;
   prompt: string;
   status: TaskStatus;
+  codexSessionId?: string;
+  lastOutput?: string;
+  error?: string;
   createdAt: string;
   updatedAt: string;
 }
