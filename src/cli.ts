@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import { addTask, listTasks } from './storage.js';
+import { addTask, listTasks, queueTask } from './storage.js';
 import { createWorkerRuntime } from './application/worker-service.js';
 
 const program = new Command();
@@ -18,6 +18,13 @@ task
   .requiredOption('-p, --prompt <prompt>')
   .action((opts) => {
     console.log(addTask(opts));
+  });
+
+task
+  .command('queue <id>')
+  .description('Queue a created task')
+  .action((id) => {
+    console.log(queueTask(id));
   });
 
 task
