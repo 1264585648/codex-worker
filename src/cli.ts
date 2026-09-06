@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { addTask, listTasks } from './storage.js';
+import { createWorkerRuntime } from './application/worker-service.js';
 
 const program = new Command();
 
@@ -29,9 +30,11 @@ const worker = program.command('worker').description('Manage worker runtime');
 
 worker
   .command('start')
-  .description('Start worker daemon')
-  .action(() => {
+  .description('Start worker runtime')
+  .action(async () => {
     console.log('Starting Codex Worker runtime...');
+    const runtime = createWorkerRuntime();
+    await runtime.start();
   });
 
 program
