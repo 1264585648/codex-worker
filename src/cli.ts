@@ -25,10 +25,14 @@ task
     console.table(listTasks());
   });
 
-program
-  .command('worker')
+const worker = program.command('worker').description('Manage worker runtime');
+
+worker
   .command('start')
-  .description('Start worker daemon');
+  .description('Start worker daemon')
+  .action(() => {
+    console.log('Starting Codex Worker runtime...');
+  });
 
 program
   .command('status')
